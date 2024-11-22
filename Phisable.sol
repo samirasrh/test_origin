@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+
 pragma solidity ^0.6.4;
 
 //Example from the Mastering Ethereum book
