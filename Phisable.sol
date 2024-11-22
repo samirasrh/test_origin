@@ -6,14 +6,14 @@ pragma solidity ^0.6.4;
 contract Phishable {
     address public owner;
 
-    constructor (address _owner) {
+    constructor (address _owner) public  {
         owner = _owner;
     }
 
-    function () external payable {} // collect ether
+    fallback () external payable {} // collect ether
 
-    function withdrawAll(address _recipient) public {
+    function withdrawAll(address payable _recipient) {
         require(tx.origin == owner);
-        _recipient.transfer(this.balance);
+        _recipient.transfer(address(this).balance);
     }
 }
